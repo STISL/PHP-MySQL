@@ -1,3 +1,8 @@
+<!--
+Assignment from: Luke, Welling; Thomson Laura. PHP and MySQL Web Development (Developer's Library).
+STUDENT: F.RUSTIQUE
+-->
+
 <!DOCTYPE html>
 <!--USE PHP SCRIPT DELIMETER TO INDICATE PHP CODING -->
 <?php
@@ -25,7 +30,23 @@
             echo htmlspecialchars($tireqty).' tires<br />';
             echo htmlspecialchars($oilqty).' bottles of oil<br />';
             echo htmlspecialchars($sparkqty).' spark plugs<br />';
-            echo htmlspecialchars($address).' - shipping address<br />';
+
+            $totalqty = 0;
+            $totalqty = $tireqty + $oilqty + $sparkqty;
+            echo "<p>Items orderd: $totalqty </p>";
+
+            $totalamount = 0.00;
+            $totalamount = ($tireqty * TIREPRICE)
+                         + ($oilqty * OILPRICE)
+                         + ($sparkqty * SPARKPRICE);
+
+            echo "Subtotal: $".number_format($totalamount,2)."<br />";
+
+            $taxrate = 0.10;  // local sales tax is 10%
+            $totalamount = $totalamount * (1 + $taxrate);
+            echo "Your total bill with tax is: $".number_format($totalamount,2)."</p>";
+
+            echo "<p>Shipping to: $address </p>";
             echo "<p>Order processed at ".date('H:i, jS F Y')."</p>";
         ?>
     </body>
